@@ -17,5 +17,7 @@ Fig. 1 Basic components of Autonomous Domain-specific Model Generator
 ## Requirements
 
 Tensorflow
+
 Keras
+
 Pandas
