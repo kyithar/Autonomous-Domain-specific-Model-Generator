@@ -13,3 +13,9 @@ We implemented the “Autonomous Domain-specific Model Generator” (ADSMG) by u
 ![system_model](https://github.com/kyithar/Autonomous-Domain-specific-Model-Generator-/blob/master/md_figs/system_model.jpg)
 
 Fig. 1 Basic components of Autonomous Domain-specific Model Generator
+
+## Requirements
+
+Tensorflow
+Keras
+Pandas
