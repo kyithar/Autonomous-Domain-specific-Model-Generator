@@ -145,7 +145,7 @@ def generate_LSTM_model(input_shape, output_shape, type_1_arr, type_2_arr, outpu
         model.add(Dense(dense, activation=output_act))
     model.add(Dropout(0.5))
     model.add(Dense(output_shape))
-    model.compile(loss=loss_tmp, optimizer='adam', metrics=metrics=metrics)
+    model.compile(loss=loss_tmp, optimizer='adam', metrics=metrics)
 
     return model
 
