@@ -98,6 +98,32 @@ def get_explored_prediction_model(input_shape, output_shape, model_config_df, ou
     return model_tmp
 
 
+#def generate_LSTM_model(input_shape, output_shape, type_1_arr, type_2_arr, output_act, loss_tmp, metrics):
+#    lstm_layers = type_1_arr
+#    dense_layers = type_2_arr
+
+#    model = Sequential()
+#    if len(lstm_layers) == 1:
+#        model.add(LSTM(units=lstm_layers[0], return_sequences=False, input_shape=input_shape))
+#    else:
+#        for layer_num in range(len(lstm_layers)):
+#            lstm_cell = lstm_layers[layer_num]
+#            if layer_num == 0:
+#                model.add(LSTM(units=lstm_cell, return_sequences=True, input_shape=input_shape))
+#            if layer_num != 0 & (layer_num + 1) != len(lstm_layers):
+#                model.add(LSTM(units=lstm_cell, return_sequences=True))
+#            if (layer_num + 1) == len(lstm_layers):
+#                model.add(LSTM(lstm_cell, return_sequences=False))
+
+#    for dense in dense_layers:
+#        model.add(Dense(dense, activation=output_act))
+#    model.add(Dropout(0.5))
+#    model.add(Dense(output_shape))
+#    model.compile(loss=loss_tmp, optimizer='adam', metrics=metrics)
+
+#    return model
+
+
 def generate_LSTM_model(input_shape, output_shape, type_1_arr, type_2_arr, output_act, loss_tmp, metrics):
     lstm_layers = type_1_arr
     dense_layers = type_2_arr
@@ -113,13 +139,13 @@ def generate_LSTM_model(input_shape, output_shape, type_1_arr, type_2_arr, outpu
             if layer_num != 0 & (layer_num + 1) != len(lstm_layers):
                 model.add(LSTM(units=lstm_cell, return_sequences=True))
             if (layer_num + 1) == len(lstm_layers):
-                model.add(LSTM(lstm_cell, return_sequences=False))
-
+                model.add(LSTM(lstm_cell, return_sequences=True))
+    model.add(Flatten())
     for dense in dense_layers:
         model.add(Dense(dense, activation=output_act))
     model.add(Dropout(0.5))
     model.add(Dense(output_shape))
-    model.compile(loss=loss_tmp, optimizer='adam', metrics=metrics)
+    model.compile(loss=loss_tmp, optimizer='adam', metrics=metrics=metrics)
 
     return model
 
@@ -156,8 +182,8 @@ def generate_CLSTM_model(input_shape, output_shape, type_1_arr, type_2_arr, type
             if layer_num != 0 & (layer_num + 1) != len(lstm_layers):
                 model.add(LSTM(units=lstm_cell, return_sequences=True))
             if (layer_num + 1) == len(lstm_layers):
-                model.add(LSTM(lstm_cell, return_sequences=False))
-
+                model.add(LSTM(lstm_cell, return_sequences=True))
+    model.add(Flatten())
     for dense in dense_layers:
         model.add(Dense(dense, activation=output_act))
     model.add(Dropout(0.5))
